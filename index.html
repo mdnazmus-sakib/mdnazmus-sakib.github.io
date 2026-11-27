@@ -1,108 +1,192 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Md. Nazmus Sakib — Portfolio</title>
-  <meta name="description" content="Portfolio of Md. Nazmus Sakib: portraits, creative compositions and selected work." />
-  <meta property="og:title" content="Md. Nazmus Sakib — Portfolio" />
-  <meta property="og:description" content="Portraits, creative compositions and selected work." />
-  <meta property="og:image" content="photos/16.jpg" />
-  <meta name="theme-color" content="#240a12" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23240a12'/%3E%3Ctext x='32' y='47' font-size='42' font-family='Impact,sans-serif' text-anchor='middle' fill='%23f0a64a'%3ES%3C/text%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Md. Nazmus Sakib — Portraits & Creative Work</title>
+<meta name="description" content="Portfolio of Md. Nazmus Sakib — portraits, creative compositions and selected work." />
+<meta property="og:title" content="Md. Nazmus Sakib — Portraits & Creative Work" />
+<meta property="og:description" content="Portraits, creative compositions and selected work." />
+<meta property="og:image" content="photos/sakib-letters.jpg" />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#150a0f" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23150a0f'/%3E%3Ctext x='32' y='46' font-size='34' font-family='Impact,sans-serif' text-anchor='middle' fill='%23e8a33d'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="top">
-    <a class="brand" href="#top">Md. Nazmus Sakib</a>
-    <nav aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<a class="skip" href="#gallery">Skip to gallery</a>
 
-  <main id="top">
+<header class="top">
+  <a class="brand" href="#top">Md. Nazmus Sakib</a>
+  <nav aria-label="Main">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <!-- HERO -->
-    <section class="hero">
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="hero-inner">
       <div class="hero-copy">
-        <p class="hello">Hi, I’m Md.</p>
-        <h1><span>Nazmus</span><span>Sakib</span></h1>
-        <!-- EDIT: one sentence about what you do -->
-        <p class="lead">Portraits, creative compositions and moments I’m proud of, collected in one place.</p>
+        <p class="eyebrow">Portraits &amp; creative work</p>
+        <h1>
+          <span>Nazmus</span>
+          <span class="accent">Sakib</span>
+        </h1>
+        <p class="lead">
+          A collection of frames I'm proud of — quiet studio light, bold colour,
+          and the moments in between.
+        </p>
         <div class="actions">
-          <a class="btn primary" href="#gallery">See the gallery</a>
+          <a class="btn primary" href="#gallery">View the gallery</a>
           <a class="btn" href="#contact">Get in touch</a>
         </div>
       </div>
+
       <div class="hero-photo">
-        <img src="photos/16.jpg" alt="Md. Nazmus Sakib in a maroon kurta leaning on large white letters that spell SAKIB" width="1086" height="1448" fetchpriority="high" />
-      </div>
-    </section>
+        <!-- Featured image swaps when a thumbnail below is clicked -->
+        <picture>
+          <source id="heroWebp" srcset="photos/sakib-letters.webp" type="image/webp" />
+          <img id="heroImg" src="photos/sakib-letters.jpg"
+               alt="Md. Nazmus Sakib leaning against oversized white letters spelling SAKIB"
+               width="1086" height="1448" fetchpriority="high" decoding="async" />
+        </picture>
 
-    <!-- ABOUT -->
-    <section id="about" class="about">
-      <img src="photos/08.jpg" alt="Md. Nazmus Sakib in a white kurta, outdoors in warm evening light" width="1086" height="1448" loading="lazy" />
-      <div class="about-copy">
-        <h2>About me</h2>
-        <!-- EDIT: replace these paragraphs with your own story -->
-        <p>I’m Md. Nazmus Sakib. This portfolio brings together a selection of my portraits and creative work, from quiet studio frames to bold compositions.</p>
-        <p>I like images and ideas that have a clear point of view. If you’d like to work together or just say hello, I’d be glad to hear from you.</p>
-        <dl>
-          <div><dt>Name</dt><dd>Md. Nazmus Sakib</dd></div>
-          <div><dt>Work</dt><dd>Add your profession here</dd></div>
-          <div><dt>Email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd></div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery" class="gallery">
-      <div class="gallery-head">
-        <h2>Gallery</h2>
-        <div class="filters" role="group" aria-label="Filter photos">
-          <button class="chip is-on" data-filter="all" aria-pressed="true">All</button>
-          <button class="chip" data-filter="portrait" aria-pressed="false">Portraits</button>
-          <button class="chip" data-filter="outdoor" aria-pressed="false">Outdoors</button>
-          <button class="chip" data-filter="creative" aria-pressed="false">Creative</button>
+        <div class="thumbs" role="group" aria-label="Choose a featured photo">
+          <button type="button" class="thumb is-on" data-src="sakib-letters"
+                  data-alt="Md. Nazmus Sakib leaning against oversized white letters spelling SAKIB"
+                  data-w="1086" data-h="1448">
+            <img src="photos/sakib-letters.jpg" alt="" width="1086" height="1448" loading="lazy" />
+          </button>
+          <button type="button" class="thumb" data-src="orange-studio"
+                  data-alt="Studio portrait on an orange backdrop wearing glasses and a black turtleneck"
+                  data-w="1086" data-h="1448">
+            <img src="photos/orange-studio.jpg" alt="" width="1086" height="1448" loading="lazy" />
+          </button>
+          <button type="button" class="thumb" data-src="amber-arch"
+                  data-alt="Red kurta framed by a carved stone arch with a hill fort behind"
+                  data-w="1100" data-h="1375">
+            <img src="photos/amber-arch.jpg" alt="" width="1100" height="1375" loading="lazy" />
+          </button>
+          <button type="button" class="thumb" data-src="neon-jungle"
+                  data-alt="Neon name sign glowing above a tropical plant wall"
+                  data-w="1023" data-h="1537">
+            <img src="photos/neon-jungle.jpg" alt="" width="1023" height="1537" loading="lazy" />
+          </button>
         </div>
       </div>
-      <div id="grid" class="grid"></div>
-    </section>
+    </div>
 
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <h2>Let’s work together</h2>
-      <!-- EDIT: your real email -->
-      <a class="mail" href="mailto:hello@example.com">hello@example.com</a>
-      <ul class="social">
-        <!-- EDIT: put your real profile links, delete the ones you don't use -->
-        <li><a href="https://facebook.com/" rel="noopener" target="_blank">Facebook</a></li>
-        <li><a href="https://instagram.com/" rel="noopener" target="_blank">Instagram</a></li>
-        <li><a href="https://linkedin.com/" rel="noopener" target="_blank">LinkedIn</a></li>
-        <li><a href="https://github.com/" rel="noopener" target="_blank">GitHub</a></li>
-      </ul>
-    </section>
-  </main>
+    <a class="scroll-cue" href="#about" aria-label="Scroll to about">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v14m0 0l-6-6m6 6l6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
 
-  <footer>© <span id="yr"></span> Md. Nazmus Sakib</footer>
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Portraits</span><i>&bull;</i><span>Creative Direction</span><i>&bull;</i>
+      <span>Studio</span><i>&bull;</i><span>Outdoors</span><i>&bull;</i>
+      <span>Portraits</span><i>&bull;</i><span>Creative Direction</span><i>&bull;</i>
+      <span>Studio</span><i>&bull;</i><span>Outdoors</span><i>&bull;</i>
+    </div>
+  </div>
 
-  <!-- LIGHTBOX -->
-  <dialog id="lb" aria-label="Photo viewer">
-    <button class="lb-close" aria-label="Close">&times;</button>
-    <button class="lb-nav prev" aria-label="Previous photo">&#8592;</button>
-    <figure>
-      <img id="lb-img" alt="" />
-      <figcaption id="lb-cap"></figcaption>
-    </figure>
-    <button class="lb-nav next" aria-label="Next photo">&#8594;</button>
-  </dialog>
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="about">
+    <picture class="about-photo">
+      <source srcset="photos/red-studio.webp" type="image/webp" />
+      <img src="photos/red-studio.jpg"
+           alt="Low-key studio portrait of Md. Nazmus Sakib on a deep red backdrop"
+           width="941" height="1672" loading="lazy" decoding="async" />
+    </picture>
 
-  <script src="script.js"></script>
+    <div class="about-copy">
+      <h2>About me</h2>
+      <p>
+        I'm Md. Nazmus Sakib. What started as a handful of studio frames has grown into
+        a body of work that moves between clean portraits, bold colour and compositions
+        built in post.
+      </p>
+      <p>
+        I care about pictures that have a clear point of view — whether that's a single
+        hard light source, a deep red backdrop, or a poster that carries a name across
+        the frame. If you'd like to work together, I'd be glad to hear from you.
+      </p>
+
+      <dl class="facts">
+        <div><dt>Name</dt><dd>Md. Nazmus Sakib</dd></div>
+        <div><dt>Based in</dt><dd>Dhaka, Bangladesh</dd></div>
+        <div><dt>Focus</dt><dd>Portraits &amp; creative compositions</dd></div>
+        <div><dt>Email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="gallery">
+    <div class="gallery-head">
+      <div>
+        <h2>Gallery</h2>
+        <p class="count"><span id="photoCount">20</span> photographs</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter photographs">
+        <button class="chip is-on" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" data-filter="portrait" aria-pressed="false">Portraits</button>
+        <button class="chip" data-filter="outdoor" aria-pressed="false">Outdoors</button>
+        <button class="chip" data-filter="creative" aria-pressed="false">Creative</button>
+      </div>
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <noscript><p class="empty">Please enable JavaScript to view the gallery.</p></noscript>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact">
+    <h2>Let's work together</h2>
+    <a class="mail" href="mailto:hello@example.com">hello@example.com</a>
+    <ul class="social">
+      <li><a href="https://facebook.com/" rel="noopener" target="_blank">Facebook</a></li>
+      <li><a href="https://instagram.com/" rel="noopener" target="_blank">Instagram</a></li>
+      <li><a href="https://linkedin.com/" rel="noopener" target="_blank">LinkedIn</a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <span>&copy; <span id="yr"></span> Md. Nazmus Sakib</span>
+  <a href="#top">Back to top</a>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<dialog id="lb" aria-label="Photo viewer">
+  <button class="lb-close" aria-label="Close photo viewer">&times;</button>
+  <button class="lb-nav prev" aria-label="Previous photo">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <figure>
+    <img id="lb-img" alt="" />
+    <figcaption>
+      <span id="lb-cap"></span>
+      <span id="lb-num" class="lb-num"></span>
+    </figcaption>
+  </figure>
+  <button class="lb-nav next" aria-label="Next photo">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</dialog>
+
+<script src="script.js"></script>
 </body>
 </html>
