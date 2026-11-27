@@ -1,6 +1,6 @@
 // ============================================================
 //  Md. Nazmus Sakib — portfolio script
-//  EDIT captions / categories here. "f" must match a file in photos/
+//  EDIT captions / categories here. "f" must match a photo file name
 //  (both .webp and .jpg exist for every entry).
 // ============================================================
 const PHOTOS = [
@@ -36,7 +36,7 @@ const PHOTOS = [
 //    - it is slow from Bangladesh and serves unoptimised files
 //  If you turn it on anyway, paste each file's ID below. Every image
 //  that fails to load automatically falls back to the local copy in
-//  photos/, so the site can never end up with broken images.
+//  the local file, so the site can never end up with broken images.
 //
 //  File ID = the part after /d/ and before /view in a share link:
 //    https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view?usp=sharing
@@ -55,12 +55,12 @@ function imageURL(slug, ext) {
     // lh3 is the only endpoint that reliably returns raw image bytes
     return `https://lh3.googleusercontent.com/d/${DRIVE_IDS[slug]}=w1200`;
   }
-  return `photos/${slug}.${ext}`;
+  return `${slug}.${ext}`;
 }
 
 /** Local path — used as the onerror fallback. */
 function localURL(slug, ext) {
-  return `photos/${slug}.${ext}`;
+  return `${slug}.${ext}`;
 }
 
 const grid = document.getElementById('grid');

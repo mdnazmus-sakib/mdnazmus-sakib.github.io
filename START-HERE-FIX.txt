@@ -1,0 +1,123 @@
+# FIX YOUR PHOTOS — flat upload, no folders
+
+Your site shows alt text instead of photos because **the `photos` folder never made it to GitHub**.
+Your repo has only 5 files: `.nojekyll README.md index.html script.js style.css`
+
+GitHub's "Upload files" page **silently ignores folders**. That is why it failed many times.
+It looks like it accepted the drag, then uploads nothing from inside the folder.
+
+## Solution: there is no folder any more
+
+This version has **every file at the top level**. No `photos/` subfolder to drag.
+Images are referenced as `sakib-letters.jpg`, not `photos/sakib-letters.jpg`.
+
+You upload 43 loose files and it works.
+
+---
+
+## Steps (takes about 2 minutes)
+
+### 1. Get the files
+Download **`sakib-UPLOAD.zip`** and **extract it** on your computer.
+You will see 43 files all sitting together — no folders.
+
+### 2. Delete the old files from your repo (optional but cleaner)
+Skip this if you want. The new files overwrite the old `index.html`, `style.css`, `script.js`.
+
+### 3. Upload
+1. Go to `github.com/mdnazmus-sakib/mdnazmus-sakib.github.io`
+2. Click **Add file** → **Upload files**
+3. Open the extracted folder, press **Ctrl+A** to select all 43 files, drag them in
+4. Scroll to the bottom → click **Commit changes**
+
+> **Do not drag a folder.** Drag the *files inside it*. With this version there is no
+> folder to drag, so it cannot go wrong.
+
+### 4. Wait, then hard-refresh
+GitHub Pages takes 1–2 minutes. Then press **Ctrl + Shift + R**.
+
+---
+
+## Check it worked
+
+Open this link directly in your browser:
+
+```
+https://mdnazmus-sakib.github.io/sakib-letters.jpg
+```
+
+- **You see a photo** → it worked. Reload your site.
+- **404 page** → the upload still didn't land. Read below.
+
+You can also check your repo's file list. It should show these 43 files:
+
+```
+index.html   style.css   script.js   .nojekyll
+sakib-letters.jpg   sakib-letters.webp
+orange-studio.jpg   orange-studio.webp
+amber-arch.jpg      amber-arch.webp
+... 40 photo files in total
+```
+
+If you see dozens of `.jpg` and `.webp` files listed, you're done.
+
+---
+
+## If upload STILL fails
+
+Some browsers and networks choke on 40+ files at once. Try these in order:
+
+**Option A — upload in batches**
+Let's say 10 to 15 files at a time. Click *Commit changes* after each batch.
+New uploads add to what's there; they don't replace it.
+
+**Option B — GitHub Desktop (most reliable, no folder problems)**
+
+1. Download **GitHub Desktop** from desktop.github.com and sign in.
+2. **File → Clone repository** → pick `mdnazmus-sakib.github.io` → choose a local folder.
+3. Open that folder on your computer. **Copy all 43 extracted files into it.**
+4. GitHub Desktop will list the changes on the left.
+5. Type a summary like `add photos` → click **Commit to main** → click **Push origin**.
+
+This always works because it copies real files into the repo instead of relying on a web form.
+
+**Option C — command line**
+
+```bash
+git clone https://github.com/mdnazmus-sakib/mdnazmus-sakib.github.io.git
+cd mdnazmus-sakib.github.io
+# copy all 43 extracted files into this folder, then:
+git add .
+git commit -m "add photos flat"
+git push
+```
+
+---
+
+## About Google Drive
+
+Ignore it. You do not need Drive for this. Drive cannot serve images to a website
+reliably — Google blocks hotlinking, and the thumbnail endpoint is rate-limited per file,
+so a 20-photo gallery gets throttled and shows broken tiles.
+
+The `USE_DRIVE` setting in `script.js` stays `false`. Keep it that way.
+
+---
+
+## Photo file list (40 images, 20 photos x 2 formats)
+
+Every photo exists as both `.jpg` and `.webp`. Browsers pick `.webp` when they can
+(smaller, faster) and fall back to `.jpg`. Both must be uploaded.
+
+| # | Photo | # | Photo |
+|---|---|---|---|
+| 1 | name-stack | 11 | amber-arch |
+| 2 | red-camellias | 12 | maroon-script |
+| 3 | through-glass | 13 | neon-jungle |
+| 4 | orange-studio | 14 | ghost-face |
+| 5 | wave-poster | 15 | red-studio |
+| 6 | white-kurta-street | 16 | black-turtleneck |
+| 7 | sakib-letters | 17 | night-street |
+| 8 | stone-wall | 18 | sunset-field |
+| 9 | collage-grid | 19 | cream-script |
+| 10 | sepia-echo | 20 | green-path |
