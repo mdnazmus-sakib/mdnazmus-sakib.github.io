@@ -68,6 +68,55 @@ To add a new photo, drop both `name.webp` and `name.jpg` into `photos/`, then ad
 If a category ends up empty, the grid shows "No photos in this category yet" instead of
 going blank.
 
+## Using Google Drive for the photos (optional — read this first)
+
+The site keeps its photos in `photos/` and **that is the recommended setup.** Drive support
+exists in `script.js` if you really need it, but it is switched off:
+
+```js
+const USE_DRIVE = false;
+```
+
+### Why Drive is a poor image host
+
+| Problem | What happens |
+|---|---|
+| Hotlinking disabled (2020) | `uc?export=view` links return a "can't scan for viruses" page, not the image |
+| Rate limiting | The only raw-bytes endpoint (`lh3…=w1200`) is throttled **per file**. A 20-photo gallery requests them all at once and tiles start failing |
+| Your quota | Every visitor's load counts against **your** Drive storage quota. Enough traffic and Google temporarily blocks the files |
+| No CDN | Slow from Bangladesh, no edge caching, no resizing — you lose the 44 MB → 2.1 MB optimisation completely |
+| Sharing | Each file must be set to "Anyone with the link" individually, or it 404s |
+
+### How to enable it anyway
+
+1. Upload the photos to Drive and set each one to **Anyone with the link → Viewer**.
+2. Copy each file's ID from its share link:
+   `https://drive.google.com/file/d/`**`1AbCdEfGhIjKlMnOp`**`/view?usp=sharing`
+3. Fill in the map in `script.js` and flip the switch:
+
+```js
+const USE_DRIVE = true;
+
+const DRIVE_IDS = {
+  'name-stack': '1AbCdEfGhIjKlMnOp',
+  'red-camellias': '1QrStUvWxYz012345',
+  // …one line per photo
+};
+```
+
+**Safety net:** every image has an `onerror` handler, so if a Drive file fails to load —
+throttled, deleted, or still private — the browser silently falls back to the local copy in
+`photos/`. You can never end up with broken tiles. This is why you should still upload the
+`photos/` folder.
+
+### A better free option
+
+If you don't want the photos sitting in the repo, put `photos/` on a free image CDN —
+**Cloudinary**, **imgix**, or **Cloudflare Images** — and point the URLs at those. They give
+you real CDN delivery, on-the-fly resizing, and no per-file throttling. All three have a
+generous free tier and would take about ten minutes to wire up.
+`imageURL()` in `script.js` is the single place you'd change.
+
 ## Publish free on GitHub Pages
 
 1. github.com → **New repository**. Name it `YOUR-USERNAME.github.io` and make it **Public**.

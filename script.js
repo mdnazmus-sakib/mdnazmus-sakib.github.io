@@ -25,7 +25,43 @@ const PHOTOS = [
   { f: 'cream-script', c: 'creative', t: 'Cream signature', alt: 'Cream toned portrait with a brush script signature', w: 1024, h: 1536 },
   { f: 'green-path', c: 'outdoor', t: 'Garden path', alt: 'Red kurta leaning on a railing beside a sunlit garden path', w: 1086, h: 1448 },
 ];
+// ============================================================
+//  OPTIONAL: load photos from Google Drive instead of local files
+// ============================================================
+//  LEAVE THIS OFF (false) unless you have a specific reason.
+//  Google Drive is NOT an image host:
+//    - external hotlinking was disabled in 2020
+//    - the thumbnail endpoint is rate-limited per file
+//    - every visitor counts against YOUR Drive quota
+//    - it is slow from Bangladesh and serves unoptimised files
+//  If you turn it on anyway, paste each file's ID below. Every image
+//  that fails to load automatically falls back to the local copy in
+//  photos/, so the site can never end up with broken images.
+//
+//  File ID = the part after /d/ and before /view in a share link:
+//    https://drive.google.com/file/d/1AbCdEfGhIjKlMnOp/view?usp=sharing
+//                                              ^^^^^^^^^^^^^^^ this
+//
+const USE_DRIVE = false;
 
+const DRIVE_IDS = {
+  // 'name-stack': '1AbCdEfGhIjKlMnOp',
+  // 'red-camellias': '1QrStUvWxYz012345',
+};
+
+/** Resolve an image URL for a photo, honouring USE_DRIVE. */
+function imageURL(slug, ext) {
+  if (USE_DRIVE && DRIVE_IDS[slug]) {
+    // lh3 is the only endpoint that reliably returns raw image bytes
+    return `https://lh3.googleusercontent.com/d/${DRIVE_IDS[slug]}=w1200`;
+  }
+  return `photos/${slug}.${ext}`;
+}
+
+/** Local path — used as the onerror fallback. */
+function localURL(slug, ext) {
+  return `photos/${slug}.${ext}`;
+}
 
 const grid = document.getElementById('grid');
 const chips = document.querySelectorAll('.chip');
@@ -59,12 +95,19 @@ function render() {
     b.setAttribute('aria-label', 'Open photo: ' + p.t);
 
     const img = document.createElement('img');
-    img.src = `photos/${p.f}.jpg`;
     img.alt = p.alt;
     img.width = p.w;
     img.height = p.h;
     img.loading = 'lazy';
     img.decoding = 'async';
+
+    // if a remote (Drive) image fails, silently swap in the local file
+    img.addEventListener('error', () => {
+      const fallback = localURL(p.f, 'jpg');
+      if (!img.src.endsWith(fallback)) img.src = fallback;
+    });
+
+    img.src = imageURL(p.f, 'jpg');
 
     const cap = document.createElement('span');
     cap.className = 'cap';
@@ -81,7 +124,11 @@ function render() {
 function show(i) {
   current = (i + visible.length) % visible.length;
   const p = visible[current];
-  lbImg.src = `photos/${p.f}.jpg`;
+  lbImg.onerror = () => {
+    const fallback = localURL(p.f, 'jpg');
+    if (!lbImg.src.endsWith(fallback)) lbImg.src = fallback;
+  };
+  lbImg.src = imageURL(p.f, 'jpg');
   lbImg.alt = p.alt;
   lbCap.textContent = p.t;
   lbNum.textContent = `${current + 1} / ${visible.length}`;
@@ -152,8 +199,12 @@ document.querySelectorAll('.thumb').forEach((t) => {
 
     const f = t.dataset.src;
     const apply = () => {
-      heroWebp.srcset = `photos/${f}.webp`;
-      heroImg.src = `photos/${f}.jpg`;
+      heroWebp.srcset = imageURL(f, 'webp');
+      heroImg.onerror = () => {
+        const fallback = localURL(f, 'jpg');
+        if (!heroImg.src.endsWith(fallback)) heroImg.src = fallback;
+      };
+      heroImg.src = imageURL(f, 'jpg');
       heroImg.alt = t.dataset.alt;
       heroImg.width = t.dataset.w;
       heroImg.height = t.dataset.h;
@@ -165,7 +216,7 @@ document.querySelectorAll('.thumb').forEach((t) => {
     const pre = new Image();
     pre.onload = apply;
     pre.onerror = apply;
-    pre.src = `photos/${f}.jpg`;
+    pre.src = imageURL(f, 'jpg');
   });
 });
 
