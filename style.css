@@ -229,12 +229,31 @@ h2{font-size:clamp(34px,5.4vw,68px);letter-spacing:.005em}
   transition:color .25s,letter-spacing .25s;
 }
 .mail:hover{color:var(--text);letter-spacing:.01em}
-.social{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:14px 30px}
-.social a{
-  color:var(--muted);text-decoration:none;font-weight:500;
-  border-bottom:1.5px solid var(--line);padding-bottom:2px;transition:color .2s,border-color .2s;
+/* social buttons with brand logos */
+.social{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:12px}
+.social-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:11px 20px 11px 16px;border-radius:999px;
+  border:1.5px solid var(--line);background:rgba(255,255,255,.03);
+  color:var(--text);text-decoration:none;font-weight:500;font-size:15px;
+  transition:background-color .22s,border-color .22s,transform .22s,color .22s;
 }
-.social a:hover{color:var(--text);border-color:var(--accent)}
+.social-btn svg{width:20px;height:20px;flex:none;fill:currentColor}
+.social-btn:hover{transform:translateY(-2px);color:#fff}
+
+/* brand accents on hover */
+.social-btn.fb:hover{background:#1877F2;border-color:#1877F2}
+.social-btn.ig:hover{background:#E1306C;border-color:#E1306C}
+.social-btn.li:hover{background:#0A66C2;border-color:#0A66C2}
+
+/* icon-only on narrow screens */
+@media (max-width:600px){
+  .social-btn{padding:11px;gap:0}
+  .social-btn span{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;
+  }
+}
 
 footer{
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
